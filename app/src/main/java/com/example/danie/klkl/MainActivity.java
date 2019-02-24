@@ -19,10 +19,8 @@ import java.util.List;
 public class MainActivity extends ListActivity {
 
     private static final List<People> peoples = new ArrayList<People>();
-    private final String[] names = getResources().getStringArray(
-            R.array.Names);
-    private final String[] countries = this.getResources().getStringArray(
-            R.array.countries);
+    private String[] names ;
+    private String[] countries;
     {
         for (int i = 0; i < names.length; i++) {
 
@@ -47,7 +45,10 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        names = getResources().getStringArray(
+                R.array.Names);
+        countries = this.getResources().getStringArray(
+                R.array.countries);
         ArrayAdapter<People> adapter = new PeopleAdapter(this);
         setListAdapter(adapter);
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Names">
+    <item>	Bill Gates	</item>
+    <item>	Warren Buffett	</item>
+    <item>	Jeff Bezos	</item>
+    <item>	Amancio Ortega	</item>
+    <item>	Mark Zuckerberg	</item>
+    <item>	Carlos Slim Helu	</item>
+    <item>	Larry Ellison	</item>
+    <item>	Charles Koch	</item>
+    <item>	David Koch	</item>
+    <item>	Michael Bloomberg	</item>
+    <item>	Bernard Arnault	</item>
+    <item>	Larry Page	</item>
+    <item>	Sergey Brin	</item>
+    <item>	Liliane Bettencourt	</item>
+    <item>	S. Robson Walton	</item>
+    <item>	Jim Walton	</item>
+    <item>	Alice Walton	</item>
+    <item>	Wang Jianlin	</item>
+    <item>	Li Ka-shing	</item>
+    <item>	Sheldon Adelson	</item>
+    <item>	Steve Ballmer	</item>
+    <item>	Jorge Paulo Lemann	</item>
+    <item>	Jack Ma	</item>
+    <item>	Beate Heister and Karl Albrecht Jr.</item>
+    <item>	David Thomson	</item>
+    <item>	Jacqueline Mars	</item>
+    <item>	John Mars	</item>
+    <item>	Phil Knight	</item>
+    <item>	Maria Franca Fissolo	</item>
+    <item>	George Soros	</item>
+    <item>	Ma Huateng	</item>
+    <item>	Lee Shau Kee	</item>
+    <item>	Mukesh Ambani	</item>
+    <item>	Masayoshi Son	</item>
+    <item>	Kjeld Kirk Kristiansen	</item>
+    <item>	Georg Schaeffler	</item>
+    <item>	Joseph Safra	</item>
+    <item>	Michael Dell	</item>
+    <item>	Susanne Klatten	</item>
+    <item>	Len Blavatnik	</item>
+
+    </string-array>
+
+</resources>

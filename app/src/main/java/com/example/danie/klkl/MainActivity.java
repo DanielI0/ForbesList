@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,7 +22,28 @@ public class MainActivity extends ListActivity {
     private static final List<People> peoples = new ArrayList<People>();
     private String[] names ;
     private String[] countries;
-    {
+
+
+    public String makePath(String b){
+        char[] a = b.toCharArray();
+        for (int i = 0; i < a.length; i++) {
+            if(a[i]>='A' && a[i]<='Z'){
+                a[i] -= 'A'-'a';
+            }else if(a[i]==' '){
+                a[i] = '_';
+            }
+        }
+        return "drawable/flag_"+String.copyValueOf(a)+".png";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        names = getResources().getStringArray(
+                R.array.Names);
+        countries = this.getResources().getStringArray(
+                R.array.countries);
         for (int i = 0; i < names.length; i++) {
 
             peoples.add(new People(names[i],
@@ -29,28 +51,10 @@ public class MainActivity extends ListActivity {
             ));
 
         }
-    }
-    public String makePath(String b){
-        char[] a = b.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            if(a[i]>='A' || a[i]<='Z'){
-                a[i] -= 'A'-'a';
-            }else if(a[i]==' '){
-                a[i] = '_';
-            }
-        }
-        return "drawable/flag_"+a.toString()+".png";
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        names = getResources().getStringArray(
-                R.array.Names);
-        countries = this.getResources().getStringArray(
-                R.array.countries);
+        ListView lv = (ListView)findViewById(R.id.list);
         ArrayAdapter<People> adapter = new PeopleAdapter(this);
-        setListAdapter(adapter);
+
+        lv.setAdapter(adapter);
     }
 
     private static class People {
@@ -66,7 +70,7 @@ public class MainActivity extends ListActivity {
     private class PeopleAdapter extends ArrayAdapter<People> {
 
         public PeopleAdapter(Context context) {
-            super(context, android.R.layout.simple_list_item_2 , peoples);
+            super(context, R.layout.activity_main , peoples);
         }
 
         @Override
@@ -75,11 +79,11 @@ public class MainActivity extends ListActivity {
 
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext())
-                        .inflate(android.R.layout.simple_list_item_2, null);
+                        .inflate(R.layout.activity_main, null);
             }
-            ((TextView) convertView.findViewById(android.R.id.text1))
+            ((TextView) convertView.findViewById(R.id.namss))
                     .setText(people.name);
-            ((ImageView) convertView.findViewById(android.R.id.text2))
+            ((ImageView) convertView.findViewById(R.id.flg))
                     .setImageBitmap(people.country);
             return convertView;
         }

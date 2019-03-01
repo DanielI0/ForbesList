@@ -2,10 +2,12 @@ package com.example.danie.klkl;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 R.array.Names);
         countries = this.getResources().getStringArray(
                 R.array.countries);
+
         values = getResources().getStringArray(R.array.values);
         for (int i = 0; i < names.length; i++) {
 
@@ -75,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
             this.name = name;
             this.country = country;
             this.value = value;
+
+        }
+        String performUrl(){
+            char[] s = this.name.toCharArray();
+            for (int i = 0; i < s.length; i++) {
+                if(s[i]==' ') s[i] = '+';
+            }
+            return "https://yandex.ru/search/?text="+String.valueOf(s);
         }
     }
 
@@ -92,8 +103,19 @@ public class MainActivity extends AppCompatActivity {
                 convertView = LayoutInflater.from(getContext())
                         .inflate(R.layout.activity_main, null);
             }
-            ((TextView) convertView.findViewById(R.id.namss))
+            TextView t;
+            (t = (TextView) convertView.findViewById(R.id.namss))
                     .setText(people.name);
+            final String url = people.performUrl();
+            t.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+            });
             ((TextView) convertView.findViewById(R.id.VAL)).setText(people.value);
             int id = getResources().getIdentifier(people.country, "drawable", getPackageName());
             ((ImageView) convertView.findViewById(R.id.flg))

@@ -4,7 +4,10 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final List<People> peoples = new ArrayList<People>();
     private String[] names ;
     private String[] countries;
+
 
 
     public String makePath(String b){
@@ -33,7 +37,7 @@ public class MainActivity extends ListActivity {
                 a[i] = '_';
             }
         }
-        return "drawable/flag_"+String.copyValueOf(a)+".png";
+        return "flag_"+String.copyValueOf(a);
     }
 
     @Override
@@ -47,7 +51,8 @@ public class MainActivity extends ListActivity {
         for (int i = 0; i < names.length; i++) {
 
             peoples.add(new People(names[i],
-                    BitmapFactory.decodeFile(makePath(countries[i]))
+
+                    makePath(countries[i])
             ));
 
         }
@@ -59,9 +64,9 @@ public class MainActivity extends ListActivity {
 
     private static class People {
         public final String name;
-        public final Bitmap country;
+        public final String country;
 
-        public People(String name, Bitmap country) {
+        public People(String name, String country) {
             this.name = name;
             this.country = country;
         }
@@ -83,8 +88,9 @@ public class MainActivity extends ListActivity {
             }
             ((TextView) convertView.findViewById(R.id.namss))
                     .setText(people.name);
+            int id = getResources().getIdentifier(people.country, "drawable", getPackageName());
             ((ImageView) convertView.findViewById(R.id.flg))
-                    .setImageBitmap(people.country);
+                    .setImageResource(id);                 //.setImageBitmap(people.country);
             return convertView;
         }
 

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final List<People> peoples = new ArrayList<People>();
     private String[] names ;
-    private String[] countries;
+    private String[] countries, values;
 
 
 
@@ -48,11 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 R.array.Names);
         countries = this.getResources().getStringArray(
                 R.array.countries);
+        values = getResources().getStringArray(R.array.values);
         for (int i = 0; i < names.length; i++) {
 
             peoples.add(new People(names[i],
 
-                    makePath(countries[i])
+                    makePath(countries[i]),
+                    values[i]
+
             ));
 
         }
@@ -65,10 +68,13 @@ public class MainActivity extends AppCompatActivity {
     private static class People {
         public final String name;
         public final String country;
+        public final String value;
 
-        public People(String name, String country) {
+
+        public People(String name, String country,String value) {
             this.name = name;
             this.country = country;
+            this.value = value;
         }
     }
 
@@ -88,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             }
             ((TextView) convertView.findViewById(R.id.namss))
                     .setText(people.name);
+            ((TextView) convertView.findViewById(R.id.VAL)).setText(people.value);
             int id = getResources().getIdentifier(people.country, "drawable", getPackageName());
             ((ImageView) convertView.findViewById(R.id.flg))
                     .setImageResource(id);                 //.setImageBitmap(people.country);
